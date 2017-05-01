@@ -18,7 +18,7 @@ module Lib
         end
         p current_price
         p before_ratio_mark + before_ratio.to_s
-        p parsent
+        p before_ratio_mark + parsent.to_s
       end
 
       private
