@@ -1,13 +1,21 @@
-require 'open-uri'
-require 'nokogiri'
-
 module Lib
   module Fin
     class Yahoo
+
+      BASE_URL = 'https://stocks.finance.yahoo.co.jp/'
+
+      def self.search_url(code)
+        "#{BASE_URL}stocks/detail/?code=#{code}"
+      end
+
+      def self.parse(code)
+        Parser::parse(search_url(code))
+      end
+
       def self.current_price(code)
-        url = "https://stocks.finance.yahoo.co.jp/stocks/detail/?code=#{code}.T"
-        doc = Nokogiri::HTML(open(url))
-        bid = doc.xpath("//td[@class='stockPrice']").text
+        doc = parse(code)
+        current_price = doc.xpath("//td[@class='stockPrice']").text
+        before_ratio = doc.xpath("//span[@class='icoDownRed yjMSt']").text
         p bid
       end
     end
