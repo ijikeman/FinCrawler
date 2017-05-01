@@ -1,5 +1,7 @@
 $:.unshift(File.dirname(File.expand_path(__FILE__)) + '/../lib/')
 require 'utils'
 
-yahoo = Lib::Parser::Yahoo.new(9142)
-yahoo.parse
+kyusyu = Lib::Parser::Yahoo.new(9142)
+makuro = Lib::Parser::Yahoo.new(3978)
+makuro.parse
+kyusyu.parse
