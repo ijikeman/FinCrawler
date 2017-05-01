@@ -7,8 +7,7 @@ module Lib
       def self.current_price(code)
         url = "https://stocks.finance.yahoo.co.jp/stocks/detail/?code=#{code}.T"
         doc = Nokogiri::HTML(open(url))
-        p doc
-        bid = doc.xpath("//*[@id='stoksPrice']").text
+        bid = doc.xpath("//td[@class='stockPrice']").text
         p bid
       end
     end
