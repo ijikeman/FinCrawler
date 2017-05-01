@@ -5,12 +5,11 @@ module Lib
   module Fin
     class Yahoo
       def current_price(code)
-        url = 'http://info.finance.yahoo.co.jp/fx/detail/?code=USDJPY=FX'
+        url = "https://stocks.finance.yahoo.co.jp/stocks/detail/?code=#{code}.T"
         doc = Nokogiri::HTML(open(url))
-        bid = doc.xpath("//*[@id='USDJPY_detail_bid']").text
-        bid = doc.xpath("//*[@id='USDJPY_detail_ask']").text
+        p doc
+        bid = doc.xpath("//*[@id='stoksPrice']").text
         p bid
-        p ask
       end
     end
   end
