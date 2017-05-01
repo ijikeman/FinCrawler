@@ -4,7 +4,7 @@ require 'nokogiri'
 module Lib
   module Fin
     class Yahoo
-      def current_price(code)
+      def self.current_price(code)
         url = "https://stocks.finance.yahoo.co.jp/stocks/detail/?code=#{code}.T"
         doc = Nokogiri::HTML(open(url))
         p doc
