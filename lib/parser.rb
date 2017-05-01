@@ -8,7 +8,7 @@ module Lib
     end
 
     def parse
-      doc = open
+      doc = nokogiri_open
     end
 
     private
@@ -16,7 +16,7 @@ module Lib
       'http://'
     end
 
-    def open
+    def nokogiri_open
       Nokogiri::HTML(open(url))
     end
   end
