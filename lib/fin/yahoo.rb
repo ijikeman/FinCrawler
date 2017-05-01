@@ -14,7 +14,7 @@ module Lib
 
       def self.current_price(code)
         doc = parse(code)
-        current_price = doc.xpath("//td[@class='stockPrice']").text
+        current_price = doc.xpath("//td[@class='stoksPrice']").text
         before_ratio = doc.xpath("//span[@class='icoDownRed yjMSt']").text
         p current_price
         p before_ratio
