@@ -1,24 +1,21 @@
 module Lib
-  module Fin
-    class Yahoo
-
+  module Parser
+    class Yahoo < Lib::Parser
       BASE_URL = 'https://stocks.finance.yahoo.co.jp/'
 
-      def self.search_url(code)
-        "#{BASE_URL}stocks/detail/?code=#{code}"
-      end
-
-      def self.parse(code)
-        Parser::parse(search_url(code))
-      end
-
-      def self.current_price(code)
-        doc = parse(code)
+      def parse
+        doc = open
         current_price = doc.xpath("//td[@class='stoksPrice']").text
         before_ratio = doc.xpath("//span[@class='icoDownRed yjMSt']").text
         p current_price
         p before_ratio
       end
+
+      private
+      def url
+        "#{BASE_URL}stocks/detail/?code=#{@code}"
+      end
+
     end
   end
 end

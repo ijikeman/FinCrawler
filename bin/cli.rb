@@ -1,4 +1,5 @@
 $:.unshift(File.dirname(File.expand_path(__FILE__)) + '/../lib/')
 require 'utils'
 
-Lib::Fin::Yahoo.current_price(9142)
+yahoo = Lib::Parser::Yahoo.new(9142(
+yahoo.parse
