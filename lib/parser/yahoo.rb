@@ -5,20 +5,26 @@ module Lib
       def parse
         doc = nokogiri_open
         current_price = doc.xpath("//td[@class='stoksPrice']").text.delete(',').to_i
-        before_ratio = doc.xpath("//span[@class='icoDownRed yjMSt']")
-        if before_ratio.empty? == true
-          before_ratio = doc.xpath("//span[@class='icoUpGreen yjMSt']")
-          before_ratio = before_ratio.text.gsub(/(\,|\+)/, '').match(/\d+/)[0].to_i 
-          parsent = ((before_ratio * 100).to_f / (current_price - before_ratio)).round(2)
-          before_ratio_mark = '+'
-        else
-          before_ratio = before_ratio.text.gsub(/(\,|\-)/, '').match(/\d+/)[0].to_i
-          parsent = ((before_ratio * 100).to_f / (current_price + before_ratio)).round(2)
-          before_ratio_mark = '-'
-        end
+        yesterday_price = doc.xpath("//div[@class='lineFi clearfix']").xpath("//dl[@class='tseDtlDelay']").xpath("dd[@class='ymuiEditLink mar0']").xpath('strong')[0].text.delete(',').to_i
+
+        today_start_price = today_high_price = today_low_price = nil
+        doc.xpath("//div[@class='lineFi clearfix']").xpath("//dl[@class='tseDtl']").xpath("dd[@class='ymuiEditLink mar0']").xpath('strong').each_with_index {|current_data, index|
+          case index
+          when 0
+            today_start_price = current_data.text.delete(',').to_i
+          when 1
+            today_high_price = current_data.text.delete(',').to_i
+          when 2
+            today_low_price = current_data.text.delete(',').to_i
+          end
+        }
         p current_price
-        p before_ratio_mark + before_ratio.to_s
-        p before_ratio_mark + parsent.to_s
+        p yesterday_price
+        p today_start_price
+        p today_high_price
+        p today_low_price
+        p current_price - yesterday_price
+        p (((current_price - yesterday_price) * 100).to_f / current_price).round(2)
       end
 
       private
