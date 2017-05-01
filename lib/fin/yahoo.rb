@@ -16,7 +16,8 @@ module Lib
         doc = parse(code)
         current_price = doc.xpath("//td[@class='stockPrice']").text
         before_ratio = doc.xpath("//span[@class='icoDownRed yjMSt']").text
-        p bid
+        p current_price
+        p before_ratio
       end
     end
   end
