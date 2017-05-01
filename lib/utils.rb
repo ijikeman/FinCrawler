@@ -1,2 +1,2 @@
 require './lib/parser'
-require './lib/fin/yahoo'
+require './lib/parser/yahoo'
