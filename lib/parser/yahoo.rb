@@ -8,10 +8,14 @@ module Lib
         before_ratio = doc.xpath("//span[@class='icoDownRed yjMSt']")
         if before_ratio.empty? == true
           before_ratio = doc.xpath("//span[@class='icoUpGreen yjMSt']")
+          before_ratio = before_ratio.text.gsub(/(\,|\+)/, '').match(/\d+/)[0].to_i 
+          before_ratio_mark = '+'
+        else
+          before_ratio = before_ratio.text.gsub(/(\,|\-)/, '').match(/\d+/)[0].to_i
+          before_ratio_mark = '-'
         end
-        before_ratio = before_ratio.text.delete(',').match(/(\+|\-)\d+/)[0]
         p current_price
-        p before_ratio
+        p before_ratio_mark + before_ratio.to_s
       end
 
       private
