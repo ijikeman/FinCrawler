@@ -1,21 +1,23 @@
-require 'open-uri'
-require 'nokogiri'
+module Lib
+  require 'open-uri'
+  require 'nokogiri'
 
-class Parser
-  def initialize(code)
-    @code = code
-  end
+  class Parser
+    def initialize(code)
+      @code = code
+    end
 
-  def parse
-    doc = nokogiri_open
-  end
+    def parse
+      doc = nokogiri_open
+    end
 
-  private
-  def url
-    'http://'
-  end
+    private
+    def url
+      'http://'
+    end
 
-  def nokogiri_open
-    Nokogiri::HTML(open(url))
+    def nokogiri_open
+      Nokogiri::HTML(open(url))
+    end
   end
 end
