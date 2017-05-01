@@ -9,13 +9,16 @@ module Lib
         if before_ratio.empty? == true
           before_ratio = doc.xpath("//span[@class='icoUpGreen yjMSt']")
           before_ratio = before_ratio.text.gsub(/(\,|\+)/, '').match(/\d+/)[0].to_i 
+          parsent = ((before_ratio * 100).to_f / (current_price - before_ratio)).round(2)
           before_ratio_mark = '+'
         else
           before_ratio = before_ratio.text.gsub(/(\,|\-)/, '').match(/\d+/)[0].to_i
+          parsent = ((before_ratio * 100).to_f / (current_price + before_ratio)).round(2)
           before_ratio_mark = '-'
         end
         p current_price
         p before_ratio_mark + before_ratio.to_s
+        p parsent
       end
 
       private
