@@ -11,27 +11,21 @@ services:
       - mail
     tty: true
     deploy:
-      mode: global
       replicas: 1
       placement:
         constraints:
           - node.role == worker
-      update_config: parallelism
   db:
     image: harisekhon/hbase:latest
     deploy:
-      mode: global
       replicas: 1
       placement:
         constraints:
           - node.role == worker
-      update_config: parallelism
   mail:
     image: tozd/postfix:latest
     deploy:
-      mode: global
       replicas: 1
       placement:
         constraints:
           - node.role == worker
-      update_config: parallelism
