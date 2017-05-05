@@ -1,0 +1,10 @@
+mail:
+  from: 'foo@example.com'
+  to: 'bar@example.com'
+  subject: 'FinCrawler'
+  server: 'localhost'
+  port: 587
+  domain: 'example.com'
+  user: 'postmaster'
+  passwd: 'password'
+  

@@ -1,0 +1,13 @@
+version: '2'
+services:
+  web:
+    build: ./dockerfile/web
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/FinCrawler
+    depends_on:
+      - db
+    tty: true
+  db:
+    image: harisekhon/hbase:latest
