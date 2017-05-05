@@ -1,3 +1,3 @@
 FROM ruby
 
-RUN bundle install
+RUN gem install nokogiri -no-ri -no-rdoc
